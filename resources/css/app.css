@@ -1,0 +1,14 @@
+/* styles.css */
+
+body {
+    padding-top: 60px;  
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #30577e;
+    text-align: center;
+    padding: 10px 0;
+}
