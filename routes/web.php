@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanguageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,8 +27,11 @@ Route::middleware(['check.authenticated'])->group(function () {
     Route::get('/employees/{employee}/edit', [EmployeeController::class, 'showAddEditForm'])->name('employees.edit');
     Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
-
     Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
     Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
-});
+    Route::get('locale/{locale}', function ($locale) {
+        session(['locale' => $locale]);
+        return redirect()->back();
+    })->name('setLocale');
+    });
