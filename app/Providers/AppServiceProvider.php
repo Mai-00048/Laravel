@@ -13,12 +13,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function boot()
     {
-        //
+        $locale = session('locale', 'en');  
+        app()->setLocale($locale);
     }
 }

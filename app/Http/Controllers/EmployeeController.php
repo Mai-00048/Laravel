@@ -28,7 +28,8 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
+        return redirect()->route('employees.index')->with('success', trans('messages.employee_deleted_success'));
+
     }
 
     public function logout()
@@ -46,7 +47,8 @@ class EmployeeController extends Controller
         ]);
 
         $employee->update($validatedData);
-        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
+        return redirect()->route('employees.index')->with('success', trans('messages.employee_updated_success'));
+
     }
 
     public function store(Request $request)
@@ -58,12 +60,13 @@ class EmployeeController extends Controller
         ]);
 
         Employee::create($validatedData);
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
+        return redirect()->route('employees.index')->with('success', trans('messages.employee_created_success'));        
     }
 
-    // Merged code for add/edit employee view
     public function showAddEditForm(Employee $employee = null)
     {
         return view('employees.crud', compact('employee'));
-    }
+    } 
+    
+
 }
